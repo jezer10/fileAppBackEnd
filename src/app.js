@@ -4,9 +4,12 @@ const cors = require('cors')
 const userRouter = require('./routes/user.route')
 const authRouter = require('./routes/auth.route')
 const fileRouter = require('./routes/file.route')
+var cookieParser = require('cookie-parser');
+
 const app = express()
 app.use(express.json())
 app.use(cors({}))
+app.use(cookieParser())
 app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
