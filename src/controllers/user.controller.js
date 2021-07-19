@@ -9,7 +9,6 @@ userController.createUser= async (req,res)=>{
         const {firstname,lastname,username,password} = req.body
         const user = {firstname,lastname,username,password}
         const response = await userService.createUser(user)
-        console.log(response)
         res.send('Complete User Created!')
     } catch (error) {
         res.status(500).send({'err':error.message})
@@ -25,8 +24,6 @@ userController.createOnlyUser = async (req,res) =>{
 
         const response = await userService.createOnlyUser(user)
 
-        console.log(response)
-
         res.send('User Created!')
 
         
@@ -34,5 +31,7 @@ userController.createOnlyUser = async (req,res) =>{
         res.status(500).send({'err':error.message})
     }
 }
+
+
 
 module.exports= userController
