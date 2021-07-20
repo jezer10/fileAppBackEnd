@@ -5,6 +5,7 @@ const userRouter = require('./routes/user.route')
 const authRouter = require('./routes/auth.route')
 const fileRouter = require('./routes/file.route')
 var cookieParser = require('cookie-parser');
+const emailRouter = require('./routes/email.route')
 
 const app = express()
 app.use(express.json())
@@ -19,13 +20,14 @@ app.get('/', (req, res) => {
 app.use('/auth', authRouter)
 app.use("/api/v1/users", userRouter)
 app.use('/api/v1/files', fileRouter)
+app.use('/api/v1/emails', emailRouter)
 
 app.use((err, req, res, next) => {
-    if(err.output){
+    if (err.output) {
         res.status(err.output.statusCode || 500).json({ 'err': err.message })
 
-    } else{
-        res.status(500).json({'err':err.message})
+    } else {
+        res.status(500).json({ 'err': err.message })
     }
 
 })
